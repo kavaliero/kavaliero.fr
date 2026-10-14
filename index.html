@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kavaliero · Développeur de jeux, streamer et créateur geek</title>
+<meta name="description" content="Les liens de Kavaliero : lives Twitch, vidéos, créations, musiques, jeux et la commu de La Kavalry sur Discord.">
+<link rel="canonical" href="https://kavaliero.fr/">
+<meta name="theme-color" content="#1E1B3A">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Kavaliero">
+<meta property="og:url" content="https://kavaliero.fr/">
+<meta property="og:title" content="Kavaliero">
+<meta property="og:description" content="Développeur de jeux, streamer et créateur geek. Bienvenue au château !">
+<meta property="og:image" content="https://kavaliero.fr/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kavaliero en chevalier devant son château, au coucher du soleil">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="fonts/jersey10.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/new-rocker.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Jersey 10"; src: url("fonts/jersey10.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Jersey 15"; src: url("fonts/jersey15.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "New Rocker"; src: url("fonts/new-rocker.woff2") format("woff2"); font-display: swap; }
+
+/* Palette « Heure dorée ». Les polices Jersey ne sont nettes qu'aux multiples de leur grille :
+   Jersey 10 à 18.667px ou 37.333px, Jersey 15 à 27px. Ne pas changer ces tailles au hasard. */
+:root {
+  --nuit: #1E1B3A; --crepuscule: #2E2350; --violet: #4A2C63; --prune: #6E3570; --rose: #9A4170;
+  --corail: #E0745F; --orange: #F09A5B; --or: #F7BE6A; --lumiere: #FCDD8E; --acier: #7FA0C8; --vin: #7B2433;
+  --encre: #120F2A; --survol: #3A2D63; --texte: #E7D9EE; --doux: #C9B8D8; --discret: #A894B8;
+}
+* { box-sizing: border-box; }
+html { background: var(--nuit); }
+body { margin: 0; background: var(--nuit); color: var(--texte); font-family: "Jersey 15", monospace; font-size: 27px; line-height: 31px; }
+a { color: var(--lumiere); text-decoration: none; }
+a:focus-visible { outline: 3px solid var(--lumiere); outline-offset: 3px; }
+img { display: block; }
+
+/* Bannière */
+.banniere { position: relative; height: 380px; overflow: hidden; }
+.banniere img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 37% 50%; }
+.banniere::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 150px;
+  background: linear-gradient(180deg, rgba(30,27,58,0) 0%, rgba(30,27,58,.35) 45%, rgba(30,27,58,.85) 80%, var(--nuit) 100%); }
+
+.page { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* En-tête */
+.entete { position: relative; margin-top: -76px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.medaillon { width: 132px; height: 132px; flex-shrink: 0; border-radius: 50%; overflow: hidden; background: var(--vin);
+  border: 6px solid var(--or); box-shadow: 0 0 0 4px var(--nuit), 0 0 0 7px var(--rose); }
+.medaillon img { width: 100%; height: 100%; }
+.titre { display: flex; flex-direction: column; gap: 6px; }
+h1 { margin: 14px 0 0; font-family: "New Rocker", serif; font-weight: 400; font-size: 46px; line-height: 52px; color: var(--or);
+  letter-spacing: 1px; text-shadow: 0 3px 0 var(--prune); }
+.titre p { margin: 0; text-wrap: balance; }
+.coupure { display: none; }
+
+/* Bouton Discord */
+.discord { align-self: stretch; margin-top: 20px; display: flex; align-items: center; gap: 12px; padding: 10px 14px 12px; text-align: left;
+  background: var(--or); border: 2px solid var(--encre); box-shadow: inset 0 2px 0 var(--lumiere), inset 0 -4px 0 var(--corail); }
+.discord:hover { background: var(--lumiere); }
+.discord img { width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; box-shadow: 0 0 0 2px var(--vin); }
+.discord-texte { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.discord-titre { font-family: "Jersey 10", monospace; font-size: 37.333px; line-height: 36px; color: var(--nuit); white-space: nowrap; }
+.discord-sous { font-family: "Jersey 10", monospace; font-size: 18.667px; line-height: 20px; color: var(--violet); }
+.discord .curseur { display: none; }
+
+/* Panneaux */
+.grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; margin-top: 22px; }
+.panneau { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 20px 18px 18px; background: var(--nuit);
+  border: 2px solid var(--or); border-radius: 4px; box-shadow: inset 0 0 0 4px var(--crepuscule), inset 0 0 0 6px var(--prune); }
+.gemme { position: absolute; width: 10px; height: 10px; background: var(--lumiere); border: 2px solid var(--corail); transform: rotate(45deg); }
+.g1 { left: -7px; top: -7px; } .g2 { right: -7px; top: -7px; } .g3 { left: -7px; bottom: -7px; } .g4 { right: -7px; bottom: -7px; }
+.panneau h2 { margin: 0 0 6px; font-family: "New Rocker", serif; font-weight: 400; font-size: 32px; line-height: 38px; color: var(--or); text-align: center; }
+.liens { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.lien { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: var(--crepuscule);
+  border: 2px solid var(--encre); box-shadow: inset 0 2px 0 var(--violet), inset 0 -2px 0 #241D46; }
+.lien:hover { border-color: var(--or); background: var(--survol); }
+.case { width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  background: var(--nuit); border: 2px solid var(--violet); box-shadow: inset 0 0 0 2px var(--encre); }
+.case img { width: 40px; height: 40px; }
+.lien-texte { display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0; }
+.lien-titre { font-family: "Jersey 10", monospace; font-size: 37.333px; line-height: 36px; color: var(--lumiere); white-space: nowrap; }
+.lien-sous { font-family: "Jersey 10", monospace; font-size: 18.667px; line-height: 20px; color: var(--doux); }
+.curseur { width: 10px; height: 18px; flex-shrink: 0; }
+
+/* La Taverne, à venir */
+.bientot { align-items: center; justify-content: center; gap: 12px; padding: 30px 20px 22px; text-align: center;
+  border-color: var(--acier); box-shadow: inset 0 0 0 4px var(--crepuscule), inset 0 0 0 6px var(--violet); }
+.bientot .gemme { background: var(--acier); border-color: var(--crepuscule); }
+.ruban { position: absolute; left: 16px; top: -14px; padding: 2px 10px; font-family: "Jersey 10", monospace; font-size: 18.667px; line-height: 20px;
+  color: var(--nuit); background: var(--acier); border: 2px solid var(--nuit); }
+.bientot h2 { margin: 0; color: var(--lumiere); }
+.bientot p { margin: 0; text-wrap: balance; }
+.adresse { font-family: "Jersey 10", monospace; font-size: 18.667px; line-height: 20px; color: var(--acier); }
+
+/* Pied de page */
+.pied { margin-top: 32px; }
+.ailleurs { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; }
+.ailleurs-titre { flex-basis: 100%; margin-bottom: 4px; text-align: center; font-family: "Jersey 10", monospace; font-size: 18.667px; line-height: 20px; color: var(--discret); }
+.puce { display: flex; align-items: center; min-height: 44px; padding: 10px 12px; font-family: "Jersey 10", monospace; font-size: 18.667px; line-height: 20px;
+  background: var(--crepuscule); border: 2px solid var(--encre); box-shadow: inset 0 2px 0 var(--violet); }
+.puce:hover { border-color: var(--or); background: var(--survol); }
+.signature { margin-top: 28px; padding: 16px 0 28px; border-top: 2px solid var(--crepuscule); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.domaine { font-family: "New Rocker", serif; font-size: 22px; line-height: 26px; color: var(--or); }
+.garde { display: flex; align-items: center; gap: 8px; font-family: "Jersey 10", monospace; font-size: 18.667px; line-height: 20px; color: var(--discret); }
+.garde img { width: 40px; height: 40px; }
+
+/* Ordinateur */
+@media (min-width: 900px) {
+  .banniere { height: auto; aspect-ratio: 5 / 2; min-height: 360px; max-height: 640px; }
+  .banniere img { object-position: 50% 18%; }
+  .banniere::after { height: 200px; }
+  .entete { margin-top: -70px; flex-direction: row; flex-wrap: wrap; align-items: flex-end; gap: 28px; text-align: left; }
+  .medaillon { width: 150px; height: 150px; border-width: 7px; box-shadow: 0 0 0 5px var(--nuit), 0 0 0 8px var(--rose); }
+  .titre { flex: 1 1 420px; min-width: 0; padding-bottom: 10px; }
+  h1 { margin: 0; font-size: 60px; line-height: 64px; letter-spacing: 0; text-shadow: 0 4px 0 var(--prune); }
+  .coupure { display: inline; }
+  .discord { flex: 0 0 auto; align-self: auto; margin: 0 0 10px; gap: 14px; padding: 10px 18px 12px 12px; }
+  .discord-sous { white-space: nowrap; }
+  .discord .curseur { display: block; }
+  .grille { gap: 28px; margin-top: 36px; }
+  .pied { margin-top: 48px; padding: 20px 24px 32px; border-top: 2px solid var(--crepuscule);
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 24px; }
+  .signature { display: contents; }
+  .domaine { order: 1; font-size: 24px; line-height: 28px; }
+  .ailleurs { order: 2; justify-content: flex-start; }
+  .ailleurs-titre { flex-basis: auto; margin: 0 6px 0 0; }
+  .garde { order: 3; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="banniere" aria-hidden="true">
+  <img src="assets/banniere-1536.webp" srcset="assets/banniere-800.webp 800w, assets/banniere-1536.webp 1536w"
+       sizes="(max-width: 899px) 570px, 100vw" width="1536" height="1024" alt="" fetchpriority="high">
+</div>
+
+<main class="page">
+
+  <header class="entete">
+    <div class="medaillon"><img src="assets/avatar-480.webp" width="480" height="480" alt="Portrait de Kavaliero en chevalier"></div>
+    <div class="titre">
+      <h1>Kavaliero</h1>
+      <p>Développeur de jeux, streamer et créateur geek. <br class="coupure">Bienvenue au château !</p>
+    </div>
+    <a class="discord" href="https://discord.gg/hKSByN9M9S">
+      <img src="assets/icone-serveur-96.webp" width="96" height="96" alt="">
+      <span class="discord-texte">
+        <span class="discord-titre">Rejoins La Kavalry</span>
+        <span class="discord-sous">Le serveur Discord de la commu</span>
+      </span>
+      <svg class="curseur" viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v9H0zM1 1h1v7H1zM2 2h1v5H2zM3 3h1v3H3zM4 4h1v1H4z" fill="#7B2433"/></svg>
+    </a>
+  </header>
+
+  <div class="grille">
+
+    <section class="panneau" aria-labelledby="titre-suivre">
+      <span class="gemme g1" aria-hidden="true"></span><span class="gemme g2" aria-hidden="true"></span><span class="gemme g3" aria-hidden="true"></span><span class="gemme g4" aria-hidden="true"></span>
+      <h2 id="titre-suivre">Me suivre</h2>
+      <ul class="liens">
+        <li><a class="lien" href="https://twitch.tv/kavalierogamedev">
+          <span class="case"><img src="assets/icones/cristal.webp" width="120" height="120" alt=""></span>
+          <span class="lien-texte"><span class="lien-titre">Twitch</span><span class="lien-sous">Les lives, gamedev et jeux</span></span>
+          <svg class="curseur" viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v9H0zM1 1h1v7H1zM2 2h1v5H2zM3 3h1v3H3zM4 4h1v1H4z" fill="#F09A5B"/></svg>
+        </a></li>
+        <li><a class="lien" href="https://www.youtube.com/@pikselstory">
+          <span class="case"><img src="assets/icones/theatre.webp" width="120" height="120" alt=""></span>
+          <span class="lien-texte"><span class="lien-titre">YouTube</span><span class="lien-sous">Les meilleurs moments</span></span>
+          <svg class="curseur" viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v9H0zM1 1h1v7H1zM2 2h1v5H2zM3 3h1v3H3zM4 4h1v1H4z" fill="#F09A5B"/></svg>
+        </a></li>
+        <li><a class="lien" href="https://www.tiktok.com/@kavalierogamedev">
+          <span class="case"><img src="assets/icones/sablier.webp" width="120" height="120" alt=""></span>
+          <span class="lien-texte"><span class="lien-titre">TikTok</span><span class="lien-sous">Les clips courts</span></span>
+          <svg class="curseur" viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v9H0zM1 1h1v7H1zM2 2h1v5H2zM3 3h1v3H3zM4 4h1v1H4z" fill="#F09A5B"/></svg>
+        </a></li>
+        <li><a class="lien" href="https://www.instagram.com/kavaliero">
+          <span class="case"><img src="assets/icones/palette.webp" width="120" height="120" alt=""></span>
+          <span class="lien-texte"><span class="lien-titre">Instagram</span><span class="lien-sous">Coulisses et créations</span></span>
+          <svg class="curseur" viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v9H0zM1 1h1v7H1zM2 2h1v5H2zM3 3h1v3H3zM4 4h1v1H4z" fill="#F09A5B"/></svg>
+        </a></li>
+      </ul>
+    </section>
+
+    <section class="panneau" aria-labelledby="titre-forge">
+      <span class="gemme g1" aria-hidden="true"></span><span class="gemme g2" aria-hidden="true"></span><span class="gemme g3" aria-hidden="true"></span><span class="gemme g4" aria-hidden="true"></span>
+      <h2 id="titre-forge">La Forge</h2>
+      <ul class="liens">
+        <li><a class="lien" href="https://www.etsy.com/fr/shop/SilhouettArt">
+          <span class="case"><img src="assets/icones/serre-livres.webp" width="120" height="120" alt=""></span>
+          <span class="lien-texte"><span class="lien-titre">SilhouettArt</span><span class="lien-sous">Serre-livres geek, sur Etsy</span></span>
+          <svg class="curseur" viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v9H0zM1 1h1v7H1zM2 2h1v5H2zM3 3h1v3H3zM4 4h1v1H4z" fill="#F09A5B"/></svg>
+        </a></li>
+        <li><a class="lien" href="https://makerworld.com/en/@kavaliero">
+          <span class="case"><img src="assets/icones/enclume.webp" width="120" height="120" alt=""></span>
+          <span class="lien-texte"><span class="lien-titre">Modèles 3D</span><span class="lien-sous">À imprimer, sur MakerWorld</span></span>
+          <svg class="curseur" viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v9H0zM1 1h1v7H1zM2 2h1v5H2zM3 3h1v3H3zM4 4h1v1H4z" fill="#F09A5B"/></svg>
+        </a></li>
+        <li><a class="lien" href="https://open.spotify.com/artist/5oU2RI4yz839h6OfogmQNr">
+          <span class="case"><img src="assets/icones/luth.webp" width="120" height="120" alt=""></span>
+          <span class="lien-texte"><span class="lien-titre">Mes musiques</span><span class="lien-sous">Mes albums, sur Spotify</span></span>
+          <svg class="curseur" viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v9H0zM1 1h1v7H1zM2 2h1v5H2zM3 3h1v3H3zM4 4h1v1H4z" fill="#F09A5B"/></svg>
+        </a></li>
+        <li><a class="lien" href="https://store.steampowered.com/publisher/blackpotion/">
+          <span class="case"><img src="assets/icones/potion.webp" width="120" height="120" alt=""></span>
+          <span class="lien-texte"><span class="lien-titre">Mes jeux</span><span class="lien-sous">À télécharger sur Steam</span></span>
+          <svg class="curseur" viewBox="0 0 5 9" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v9H0zM1 1h1v7H1zM2 2h1v5H2zM3 3h1v3H3zM4 4h1v1H4z" fill="#F09A5B"/></svg>
+        </a></li>
+      </ul>
+    </section>
+
+    <section class="panneau bientot" aria-labelledby="titre-taverne">
+      <span class="gemme g1" aria-hidden="true"></span><span class="gemme g2" aria-hidden="true"></span><span class="gemme g3" aria-hidden="true"></span><span class="gemme g4" aria-hidden="true"></span>
+      <span class="ruban">Bientôt</span>
+      <img src="assets/icones/cartes.webp" width="64" height="64" alt="">
+      <h2 id="titre-taverne">La Taverne</h2>
+      <p>Le jeu de cartes de la Kavalry. Prends place à la table, les premières parties arrivent.</p>
+      <span class="adresse">taverne.kavaliero.fr</span>
+    </section>
+
+  </div>
+</main>
+
+<footer class="pied page">
+  <nav class="ailleurs" aria-label="Ailleurs dans le royaume">
+    <span class="ailleurs-titre">Ailleurs dans le royaume</span>
+    <a class="puce" href="https://x.com/kavaliero">X</a>
+    <a class="puce" href="https://bsky.app/profile/kavaliero.bsky.social">Bluesky</a>
+    <a class="puce" href="https://www.threads.com/@kavaliero">Threads</a>
+    <a class="puce" href="https://www.facebook.com/PikselStory">Facebook</a>
+  </nav>
+  <div class="signature">
+    <span class="domaine">kavaliero.fr</span>
+    <span class="garde"><img src="assets/ecuyer-80.webp" width="80" height="80" alt="">Gardé par L'Écuyer</span>
+  </div>
+</footer>
+
+</body>
+</html>
