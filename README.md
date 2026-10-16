@@ -10,6 +10,7 @@ La page de liens de Kavaliero, dans la DA « Heure dorée ». Un site statique :
 | `assets/` | bannière (800 et 1536 px de large), avatar, icône du serveur, emoji de L'Écuyer, icônes des liens (`assets/icones/`) |
 | `fonts/` | Jersey 10, Jersey 15 et New Rocker en woff2, réduites aux caractères latins et français, avec leurs licences OFL. Hébergées ici : aucun appel à Google Fonts. |
 | `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` | l'icône d'onglet et d'écran d'accueil (l'écu au K du serveur) |
+| `medias/` | images publiques des posts réseaux (Threads, Bluesky) : Metricool ne programme qu'un média en ligne |
 | `og-image.jpg` | l'aperçu affiché quand on colle le lien sur Discord, X, etc. (1200 × 630) |
 
 ## Modifier un lien
